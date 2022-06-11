@@ -1,0 +1,57 @@
+MENU_PROMPT = "\nEnter 'a' to add a movie, 'l' to see your movies, 'f' to find a movie by title, or 'q' to quit: "
+movies = []
+
+
+def add():
+    title = input("Enter the movie title: ")
+    director = input("Enter the movie director: ")
+    year = input("Enter the movie release year: ")
+
+    movies.append({
+        'title': title,
+        'director': director,
+        'year': year
+    })
+
+
+def movie_list():
+    for movie in movies:
+        title = movie['title']
+        director = movie['director'].title()
+        year = movie['year']
+
+        print(f'The title is {title}.')
+        print(f'The director is {director}.')
+        print(f'The movie was released in {year}.\n')
+
+
+def find():
+    user_input = input('Search for a movie title: ')
+    movie_found = False
+
+    for movie in movies:
+        if user_input.lower() == movie['title'].lower():
+            movie_found = True
+
+    if movie_found:
+        print(f'{user_input} is in your list!')
+
+    else:
+        print(f'{user_input} is not in your list!')
+
+
+selection = input(MENU_PROMPT)
+while selection != 'q':
+    if selection == "a":
+        add()
+
+    elif selection == "l":
+        movie_list()
+
+    elif selection == "f":
+        # add a function to find movie by title
+        find()
+    else:
+        print('Unknown command. Please try again.')
+
+    selection = input(MENU_PROMPT)
